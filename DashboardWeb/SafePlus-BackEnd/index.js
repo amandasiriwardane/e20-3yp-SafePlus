@@ -9,13 +9,24 @@ const WebSocket = require('ws');
 const HourlyStats = require('./models/HourlyStatModel');
 
 const app = express();
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://safeplus.netlify.app'
+];
+
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://safeplus.netlify.app'
-  ],
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
+
 
 app.use(requestIp.mw());
 app.use(express.json());
