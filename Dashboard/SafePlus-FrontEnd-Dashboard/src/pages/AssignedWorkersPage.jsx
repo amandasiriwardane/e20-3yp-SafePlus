@@ -9,15 +9,17 @@ export default function AssignedWorkersPage() {
 
   // Fetch assigned workers
   useEffect(() => {
+    const apiUrl = process.env.REACT_APP_API_URL || 'https://e20-3yp-safeplus-production-6ef3.up.railway.app';
     axios
-      .get("http://localhost:8000/api/workers/assigned")
+      .get(`${apiUrl}/api/workers/assigned`)
       .then((res) => setWorkers(res.data))
       .catch((err) => console.error("Error fetching assigned workers:", err));
   }, []);
 
   // Connect to WebSocket for live sensor data
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8086");
+    const wsUrl = process.env.REACT_APP_WS_URL || 'wss://e20-3yp-safeplus-production-6ef3.up.railway.app';
+    const ws = new WebSocket(wsUrl);
 
     ws.onopen = () => console.log("✅ WebSocket connected");
     ws.onmessage = (event) => {

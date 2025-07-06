@@ -61,6 +61,62 @@ Detailed designs with many sub-sections
 
 Testing done on hardware and software, detailed + summarized results
 
+## Environment Configuration
+
+### Backend Configuration
+
+The backend uses environment variables for configuration. Copy `.env.example` to `.env` in the `dashboard/SafePlus-BackEnd/` directory and configure the following variables:
+
+```bash
+# Server Configuration
+PORT=8000                    # HTTP server port
+WS_PORT=8085                # WebSocket server port
+FRONTEND_URL=http://localhost:5173  # Frontend URL for CORS
+
+# Database Configuration
+MONGO_URL=your-mongodb-connection-string
+JWT_SECRET=your-jwt-secret
+
+# AWS IoT Configuration
+PRIVATE_KEY_PATH=./certificate/private.pem.key
+CERTIFICATE_PATH=./certificate/certificate.pem.crt
+ROOT_CA_PATH=./certificate/AmazonRootCA1.pem
+AWS_IOT_ENDPOINT=your-aws-iot-endpoint
+```
+
+### Frontend Configuration
+
+The frontend uses environment variables for API endpoints. Copy `.env.example` to `.env` in the `Dashboard/SafePlus-FrontEnd-Dashboard/` directory:
+
+```bash
+# API Configuration
+REACT_APP_API_URL=http://localhost:8000
+REACT_APP_WS_URL=ws://localhost:8085
+```
+
+### Production Deployment
+
+For production deployment, use the following environment variables:
+
+**Backend (.env):**
+```bash
+PORT=8000
+WS_PORT=8085
+FRONTEND_URL=https://quiet-zabaione-c6e293.netlify.app
+```
+
+**Frontend (.env):**
+```bash
+REACT_APP_API_URL=https://e20-3yp-safeplus-production-6ef3.up.railway.app
+REACT_APP_WS_URL=wss://e20-3yp-safeplus-production-6ef3.up.railway.app
+```
+
+### Running the Application
+
+1. **Backend**: Navigate to `dashboard/SafePlus-BackEnd/` and run `npm start`
+2. **Frontend**: Navigate to `Dashboard/SafePlus-FrontEnd-Dashboard/` and run `npm start`
+
+Make sure to configure the environment variables before starting the servers.
 
 ## Conclusion
 

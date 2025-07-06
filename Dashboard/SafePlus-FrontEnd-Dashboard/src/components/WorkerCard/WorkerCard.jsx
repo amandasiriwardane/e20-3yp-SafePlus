@@ -73,7 +73,8 @@ export default function WorkerCard({ worker, sensorData, onClick }) {
     if (!confirmed) return;
 
     try {
-      const res = await fetch("http://localhost:8000/api/sos", {
+      const apiUrl = process.env.REACT_APP_API_URL || 'https://e20-3yp-safeplus-production-6ef3.up.railway.app';
+      const res = await fetch(`${apiUrl}/api/sos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ alert: "ALERT", helmetId: worker.helmetId }),

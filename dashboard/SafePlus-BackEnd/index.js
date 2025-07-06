@@ -10,7 +10,7 @@ const HourlyStats = require('./models/HourlyStatModel');
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL || 'https://quiet-zabaione-c6e293.netlify.app',
   credentials: true
 }));
 
@@ -46,12 +46,12 @@ app.post('/api/sos', (req, res) => {
 
 
 // Start HTTP Server
-const port = 8000;
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`✅ Server is running on port ${port}`);
 });
 
-const wss = new WebSocket.Server({ port: 8085 });
+const wss = new WebSocket.Server({ port: process.env.WS_PORT || 8085 });
 
 // AWS IoT Setup
 const device = awsIot.device({

@@ -14,7 +14,7 @@ const cors = require("cors");
 router.use(
   cors({
     credentials: true,
-    origin: 'http://localhost:5173'
+    origin: process.env.FRONTEND_URL || 'https://quiet-zabaione-c6e293.netlify.app'
   })
 );
 

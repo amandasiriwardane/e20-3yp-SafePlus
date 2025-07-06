@@ -14,7 +14,7 @@ import Settings from "./pages/Settings";
 import { NotificationProvider } from "./context/NotificationContext";
 
 
-axios.defaults.baseURL =  'http://localhost:8000'
+axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'https://e20-3yp-safeplus-production-6ef3.up.railway.app'
 axios.defaults.withCredentials= true
 
 const App = () => {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const apiUrl = 'http://localhost:8001';
+const apiUrl = process.env.REACT_APP_API_URL || 'https://e20-3yp-safeplus-production-6ef3.up.railway.app';
 const RegisterWorkerForm = ({ onSuccess }) => {
   const [formData, setFormData] = useState({
     name: "",
