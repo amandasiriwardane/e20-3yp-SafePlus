@@ -10,7 +10,10 @@ const HourlyStats = require('./models/HourlyStatModel');
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173',
+    'https://safeplus.netlify.app'
+  ],
   credentials: true
 }));
 
