@@ -111,6 +111,7 @@ const device = awsIot.device({
   caPath: process.env.ROOT_CA_PATH,
   clientId: "NodeBackendClient",
   host: process.env.AWS_IOT_ENDPOINT,
+  keepalive:30,
 });
 
 wss.on("connection", (ws) => {
