@@ -110,7 +110,7 @@ export default function WorkerCard({ worker, sensorData, onClick }) {
       >
         {/* Battery Indicator */}
         <div className={`battery-indicator ${sensorData?.battery?.percentage < 20 ? "low" : "ok"}`}>
-          <img src="/icons/battery.png" alt="Battery" />
+          <img src="/icons/battery.jpg" alt="Battery" />
           <span>
             {sensorData?.battery?.percentage !== undefined
             ? `${sensorData.battery.percentage}%`
